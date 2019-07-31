@@ -1,0 +1,162 @@
+<nb-card id="card">
+    <nb-card-header style ="    background: #2449b6;
+    color: white;">Add User</nb-card-header>
+    <nb-card-body>
+        <form    #form="ngForm" aria-labelledby="title">
+            <nb-card>
+                <nb-card-body>
+
+      <div class ="row">
+          <div class ="col-md-12 column">
+              <div class ="col-md-4 formLeft"  >
+                 <input nbInput
+                 fullWidth
+                 [(ngModel)]="user.name"
+                 #name="ngModel"
+                 name="name"
+                 id="name"
+                  placeholder="name"
+                 fieldSize="large"
+                 autofocus
+             
+                 [required]="true"
+                >
+          <ng-container *ngIf="name.invalid && name.touched">
+            <p class="caption status-danger" *ngIf="name.errors?.required">
+               Name is required!
+            </p>
+         
+          </ng-container>
+             </div>
+             <div class ="col-md-4 formLeft">
+                 <input nbInput
+                 fullWidth
+                 [(ngModel)]="user.email"
+                 #email="ngModel"
+                 name="email"
+                 id="input-email"
+                 pattern=".+@.+\..+"
+                 placeholder="Email address"
+                 fieldSize="large"
+                 autofocus
+                 [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                 [required]="true"
+                 [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+          <ng-container *ngIf="email.invalid && email.touched">
+            <p class="caption status-danger" *ngIf="email.errors?.required">
+              Email is required!
+            </p>
+            <p class="caption status-danger" *ngIf="email.errors?.pattern">
+              Email should be the real one!
+            </p>
+          </ng-container>
+             </div>
+  
+             <div class ="col-md-4 formRight"  >
+                <input nbInput
+                fullWidth
+                [(ngModel)]="user.mobileNo"
+                #mobileNo="ngModel"
+                name="mobileNo"
+                id="mobileNo"
+                 placeholder="mobileNo"
+                fieldSize="large"
+                autofocus
+              type ="number"
+                [required]="true"
+               >
+         <ng-container *ngIf="mobileNo.invalid && mobileNo.touched">
+           <p class="caption status-danger" *ngIf="mobileNo.errors?.required">
+              Number is required!
+           </p>
+        
+         </ng-container>
+            </div>
+           </div>
+        <div class ="col-md-12 column ">
+           <div class ="col-md-3 formLeft"  >
+              <input nbInput
+              fullWidth
+              [(ngModel)]="user.city"
+              #city="ngModel"
+              name="city"
+              id="city"
+               placeholder="city"
+              fieldSize="large"
+              autofocus
+          
+              [required]="true"
+             >
+       <ng-container *ngIf="city.invalid && city.touched">
+         <p class="caption status-danger" *ngIf="city.errors?.required">
+            city is required!
+         </p>
+      
+       </ng-container>
+          </div>
+          <div class ="col-md-3 formLeft">
+              <input nbInput
+              fullWidth
+              [(ngModel)]="user.state"
+              #state="ngModel"
+              name="state"
+              id="input-email"
+               placeholder="state"
+              fieldSize="large"
+              autofocus
+              [status]="state.dirty ? (state.invalid  ? 'danger' : 'success') : ''"
+              [required]="true"
+              [attr.aria-invalid]="state.invalid && state.touched ? true : null">
+       <ng-container *ngIf="state.invalid && state.touched">
+         <p class="caption status-danger" *ngIf="state.errors?.required">
+            state is required!
+         </p>
+          
+       </ng-container>
+          </div>
+         
+
+          <div class ="col-md-3 formLeft">
+              <nb-select placeholder="Country"  fullWidth #country="ngModel"  [(ngModel)]="user.country">
+                  <nb-option *ngFor ="let list of countryList " [value]="list.name">{{list.name}}</nb-option>
+                 </nb-select>
+       <ng-container *ngIf="country.invalid && email.touched">
+         <p class="caption status-danger" *ngIf="country.errors?.required">
+            country is required!
+         </p>
+          
+       </ng-container>
+          </div>
+          <div class ="col-md-3 formRight">
+              <input nbInput
+              fullWidth
+              [(ngModel)]="user.password"
+              #password="ngModel"
+              name="password"
+              id="input-email"
+               placeholder="password"
+              fieldSize="large"
+              autofocus
+              [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+              [required]="true"
+              [attr.aria-invalid]="state.invalid && state.touched ? true : null">
+       <ng-container *ngIf="password.invalid && password.touched">
+         <p class="caption status-danger" *ngIf="password.errors?.required">
+            state is required!
+         </p>
+          
+       </ng-container>
+          </div>
+        </div>
+        
+      </div>
+      </nb-card-body>
+    </nb-card>
+      </form>
+    </nb-card-body>
+    <nb-card-footer  >
+      <button class="cancel formRight" nbButton status="danger" (click)="cancel()">Cancel</button>
+      <button nbButton class ="formRight" status="success" [disabled]="disabled" (click)="submit()">Submit</button>
+    </nb-card-footer>
+  </nb-card>
+  

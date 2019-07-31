@@ -1,0 +1,78 @@
+<div class ="row">
+
+  <div class ="col-md-12">
+    
+      <nb-card>
+          <nb-card-body>
+                   <input nbInput    class="search-input" placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+                 <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                </agm-map>
+            <label class="search-label" for="search">Search:</label>
+            <input nbInput  id="search" class="search-input">
+            <button nbButton status="primary" style= "    float: right;" (click)="open()">Add User</button>
+            <table class ="tablecustom">
+              <tr>
+              <th width="15%">Name</th>
+              <th width="25%">Email</th>
+              <th width="15%">Mobile No.</th>
+              <th width="15%">City</th>
+              <th width="15%">State</th>
+              <th width="15%">Country</th>
+              <th width="15%">Action</th>
+
+            </tr>
+            <tbody *ngFor="let x of data">
+              <tr >
+                <td> 
+                  <a  (click) ="x.open = !x.open" *ngIf ="x.open"><nb-icon icon="arrow-ios-downward-outline"></nb-icon></a>
+                  <a (click) ="x.open = !x.open"  *ngIf ="!x.open"><nb-icon icon="arrow-ios-back-outline"></nb-icon></a>   {{ x.name }}</td>
+                <td>{{ x.email }}</td>
+                <td>{{ x.mobileNo }}</td>
+                <td>{{ x.city }}</td>
+                <td>{{ x.state }}</td>
+                <td>{{ x.country }}</td>
+<td></td>
+               </tr>
+               <tr *ngIf ="x.open">
+                 <td colspan="7">
+                    <button   nbButton status="primary" style= "   margin-bottom: 10px; float: right;" (click)="openDevice()">Add Device</button>
+                    <table class ="tablecustom">
+                        <tr>
+                        <th width="15%">Name</th>
+                        <th width="25%">Email</th>
+                        <th width="15%">Mobile No.</th>
+                        <th width="15%">City</th>
+                        <th width="15%">State</th>
+                        <th width="15%">Country</th>
+                        <th width="15%">Action</th>
+          
+                      </tr>
+            </table>          
+                 </td>
+               </tr>
+              </tbody>
+            </table>
+            <!-- <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+        
+              <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+              <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+        
+            
+        
+              <ng-container *ngFor="let column of header; let index = index"
+                            [nbTreeGridColumnDef]="column.key"
+                            [showOn]="getShowOn(index)">
+                <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column.key)" *nbTreeGridHeaderCellDef [width] = "column.width + '%'">
+                  {{column.name}}
+                </th>
+                <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column.key] || '-'}}</td>
+              </ng-container>
+        
+            </table> -->
+        
+          </nb-card-body>
+        </nb-card>
+        
+  </div>
+</div>
